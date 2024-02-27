@@ -1,0 +1,41 @@
+function primeNumber(num){
+
+    if(num <= 1){
+        return false
+    }
+
+    for(var i = 2; i < num; i++){
+        if(num % i === 0){
+            return false;
+        }
+    }
+
+    return true;
+}
+var primeNumbers = [];
+for(var i = 2; i < 100; i++){
+    if(primeNumber(i)){
+        primeNumbers.push(i);
+    }
+    
+}
+
+var longestSum = 0;
+var longestSumLength = 0;
+for(var i = 0; i < primeNumbers.length; i++){
+    var currentSum = 0;
+    var currentLength = 0;
+
+    for(var j = i; j < primeNumbers.length; j++){
+        currentSum += primeNumbers[j];
+        currentLength++;
+
+        if(primeNumber(currentSum) && currentSum > longestSum && currentLength > longestSumLength){
+            longestSum = currentSum;
+            longestSumLength = currentLength;
+        }
+    }
+}
+
+gs.info(longestSum)
+gs.info(longestSumLength)
